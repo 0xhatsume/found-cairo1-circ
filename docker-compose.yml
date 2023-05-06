@@ -1,0 +1,21 @@
+version: '3'
+services:
+  circom:
+    build:
+      dockerfile: ./Docker/Dockerfile
+    platform: linux/arm64
+    image: found-cairo1-circ:0.11.0.2-arm
+    container_name: fcc
+    # build:
+    #   context: .
+    env_file:
+      - .env
+    ports:
+      - 8888:8888
+      - 8545:8545
+    volumes:
+      - ./srv:/srv
+    command: ["sh"]
+    working_dir: /srv
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
